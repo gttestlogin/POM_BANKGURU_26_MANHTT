@@ -1,4 +1,3 @@
-//3rd comment
 package com.bankguru.account;
 
 import java.time.Duration;

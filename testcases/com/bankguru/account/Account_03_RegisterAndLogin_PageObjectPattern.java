@@ -112,6 +112,52 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 
 	}
 	
+	@Test
+	public void TC_03_CreateNewCustomer() {
+		System.out.println("NEW_CUSTOMER - STEP: 1. Open New Customer page");
+		registerPage.openLoginPageUrl(loginPageUrl);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 2. Verify New Customer page displayed");
+		loginPage.inputToPasswordTextbox(password);
+
+		System.out.println("NEW_CUSTOMER - STEP: 3. Input to Customer Name textbox");
+		loginPage.inputToPasswordTextbox(password);
+
+		System.out.println("NEW_CUSTOMER - STEP: 4. Click to Gender with 'male' value");
+		loginPage.clickToLoginButton();
+		
+		System.out.println("NEW_CUSTOMER - STEP: 5. Input to Date of Birth textbox");
+		loginPage.inputToPasswordTextbox(password);
+
+		System.out.println("NEW_CUSTOMER - STEP: 6. Input to Address textarea");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 7. Input to City textbox");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 8. Input to State textbox");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 9. Input to PIN textbox");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 10. Input to Phone textbox");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 11. Input to Email textbox");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 12. Input to Password textbox");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 13. Click to Submit button");
+		loginPage.inputToPasswordTextbox(password);
+		
+		System.out.println("NEW_CUSTOMER - STEP: 14. ");
+		loginPage.inputToPasswordTextbox(password);
+		
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();

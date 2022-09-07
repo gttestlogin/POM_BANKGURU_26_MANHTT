@@ -1,0 +1,11 @@
+/.DS_Store
+/chromedriver.exe
+/com/
+/commons/
+/drag_and_drop_helper.js
+/jquery_load_helper.js
+/pageObjects/
+/pageUIs/
+/runBankGuruTestcases.xml
+/webdriver/
+/webdriver1/

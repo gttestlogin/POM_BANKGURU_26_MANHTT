@@ -1,0 +1,42 @@
+
+//	[Online 10] - Topic 20 (POM 02 - Build Selenium Wrapper API/ Apply AbstractPage)
+
+Project Structure
+
+AbstractPage: Những hàm dùng chung cho tầng page Object
+AbstractTest: Những hàm dùng cho cho tầng testcases
+Constants: Dữ liệu dùng chung cho toàn bộ dự án
+LoginPageObject: Sự kiện, hành động của Login Page
+
+Builtin keyword
+- Ctrl + D: Xóa dòng/ khối lệnh 
+- Ctrl + Shift + F: Format dòng khối lệnh
+- Ctrl + Shift + O: Import/ remove thư viện 
+- F3: Đi vào trong hàm/ biến
+o Ctrl + Shift + c: Comment/ Uncomment dòng/ khối lệnh
+o Ctrl + Shift +/: Comment
+o Ctrl + Shift +\: Uncomment 
+o Ctrl + Space: Suggest code 
+o Alt + (mũi tên lên xuống): Move 1 dòng/ khối lệnh lên hoặc xuống
+• Ctrl + (phím - hoặc phím +): giảm hoặc tăng font chữ
+• User Define keyword: Windows > Preferences > General > Keys
+
+Wrapper API: như sendKeys dùng rất nhiều lần
+
+//Use AbstractPage class
+- cach 1: Import + Init AbstractPage class
+	+ Phai khai bao
+	+ Phai khoi tao
+	+ Phai thong qua instance cua class AbstractPage
+- cach 2: Extends AbstractPage
+	+ 1 trong những nguyên tắc của OOP:
+		- Tính kế thừa
+		- Tính đa hình
+		- Tính trừu tượng
+	+ Khong can khai bao
+	+ Khong can khoi tao
+	+ Khong phai thong qua instance - dung truc tiep
+	
+driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);//deprecated in selenium 4
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+

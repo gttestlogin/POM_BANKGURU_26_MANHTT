@@ -23,14 +23,19 @@ import pageObjects.RegisterPageObject;
 public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage {
 
 	WebDriver driver;
-	String projectPath, email, username, password, loginPageUrl;
-	long shortTimeout = 5;
-	long longTimeout = 30;
 	
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
 	HomePageObject homePage;
 	NewCustomerPageObject newCustomer;
+	
+	long shortTimeout = 5;
+	long longTimeout = 30;
+	
+	String projectPath, email, username, password, loginPageUrl;
+	String customerNameValue, dateOfBirthValue, addressValue, cityValue;
+	String stateValue, pinValue, phoneValue, emailValue, passwordValue;
+	
 	
 	// 
 	@BeforeClass
@@ -56,19 +61,22 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 		homePage = new HomePageObject(driver);
 		newCustomer = new NewCustomerPageObject(driver);
 
+		customerNameValue = "manhkaka";
+		dateOfBirthValue = "1990-12-15";
+		addressValue = "Z06 Road 13";
+		cityValue = "Hanoi";
+		stateValue = "Hanoi";
+		pinValue = "123456";
+		phoneValue = "0898993290";
+		emailValue = "auto" + randomDataTest() + "@gmail.com";
+		passwordValue = "12341234";
+		
 		//selenium api: xu li triet de theo PO trong bai Multi-browsers
 		System.out.println("PRE-CONDITION-STEP: 1. Open BankGuru Application");
 		driver.get("https://demo.guru99.com/v4/");
 		
 		System.out.println("PRE-CONDITION-STEP: 2. Get Login Page Url");
 		loginPageUrl = loginPage.getLoginPageUrl();
-		
-		/*
-		driver.manage().deleteAllCookies();
-		//driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);//deprecated in selenium 4
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(shortTimeout));
-		driver.manage().window().maximize();
-		*/
 		
 		/*
 		auto1@gmail.com
@@ -121,50 +129,62 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 		System.out.println("NEW_CUSTOMER - STEP: 1. Open New Customer page");
 		homePage.clickToNewCustomerPage();
 		
+		//skip ads
+		openUrl(driver, "https://demo.guru99.com/v4/manager/addcustomerpage.php");
+		
 		System.out.println("NEW_CUSTOMER - STEP: 2. Verify New Customer page displayed");
 		Assert.assertTrue(newCustomer.isNewCustomerPageDisplayed());
 
 		System.out.println("NEW_CUSTOMER - STEP: 3. Input to Customer Name textbox");
-		newCustomer.inputToCustomerName(password);
+		newCustomer.inputToCustomerName(customerNameValue);
 
 		System.out.println("NEW_CUSTOMER - STEP: 4. Click to Gender with 'male' value");
 		newCustomer.clickToGenderMale();
 		
 		System.out.println("NEW_CUSTOMER - STEP: 5. Input to Date of Birth textbox");
-		newCustomer.inputToDateOfBirthTextbox(password);
+		newCustomer.inputToDateOfBirthTextbox(dateOfBirthValue);
 
 		System.out.println("NEW_CUSTOMER - STEP: 6. Input to Address textarea");
-		newCustomer.inputToAddressTextArea(password);
+		newCustomer.inputToAddressTextArea(addressValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 7. Input to City textbox");
-		newCustomer.inputToCityTextbox(password);
+		newCustomer.inputToCityTextbox(cityValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 8. Input to State textbox");
-		newCustomer.inputToStateTextbox(password);
+		newCustomer.inputToStateTextbox(stateValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 9. Input to PIN textbox");
-		newCustomer.inputToPINTextbox(password);
+		newCustomer.inputToPINTextbox(pinValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 10. Input to Phone textbox");
-		newCustomer.inputToPhoneTextbox(password);
+		newCustomer.inputToPhoneTextbox(phoneValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 11. Input to Email textbox");
-		newCustomer.inputToEmailTextbox(password);
+		newCustomer.inputToEmailTextbox(emailValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 12. Input to Password textbox");
-		newCustomer.inputToPasswordTextbox(password);
+		newCustomer.inputToPasswordTextbox(passwordValue);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 13. Click to Submit button");
 		newCustomer.clickToSubmitButton();
 		
-		System.out.println("NEW_CUSTOMER - STEP: 14. ");
-		newCustomer.inputToPasswordTextbox(password);
+		System.out.println("NEW_CUSTOMER - STEP: 14. Verify 'Customer Registered Successfully!!!' message displayed");
+		newCustomer.isCustomerRegisteredSuccessMessageDisplayed();
 		
+		System.out.println("NEW_CUSTOMER - STEP: 15. Verify all information show correct");
+		Assert.assertEquals(newCustomer.getCustomerNameValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getGenderValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getBirthdayValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getAddressValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getStateValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getPhoneValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getEmailValueInTable(), customerNameValue);
+
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+//		driver.quit();
 	}
 
 	public int randomDataTest() {

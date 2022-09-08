@@ -74,8 +74,8 @@ public class NewCustomerPageObject extends AbstractPage{
 	}
 	
 	public void inputToPasswordTextbox(String state) {
-		waitForElementVisible(driver, NewCustomerPageUI.STATE_TEXTBOX);
-		sendkeyToElement(driver, NewCustomerPageUI.STATE_TEXTBOX, state);
+		waitForElementVisible(driver, NewCustomerPageUI.PASSWORD_TEXTBOX);
+		sendkeyToElement(driver, NewCustomerPageUI.PASSWORD_TEXTBOX, state);
 		
 	}
 
@@ -83,6 +83,47 @@ public class NewCustomerPageObject extends AbstractPage{
 		waitForElementVisible(driver, NewCustomerPageUI.SUBMIT_BUTTON);
 		clickToElement(driver, NewCustomerPageUI.SUBMIT_BUTTON);
 		
+	}
+
+	public boolean isCustomerRegisteredSuccessMessageDisplayed() {
+		waitForElementVisible(driver, NewCustomerPageUI.NEW_CUSTOMER_PAGE_HEADING);
+		return isControlDisplayed(driver, NewCustomerPageUI.NEW_CUSTOMER_PAGE_HEADING);
+		
+	}
+
+	public String getCustomerNameValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getBirthdayValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getGenderValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getAddressValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getStateValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getPhoneValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getEmailValueInTable() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 		
 }

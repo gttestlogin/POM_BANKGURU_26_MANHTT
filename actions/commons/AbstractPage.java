@@ -160,6 +160,9 @@ public class AbstractPage {
 	
 	public String getTextElement(WebDriver driver, String locator) {
 		element = driver.findElement(By.xpath(locator));
+		String actualText = element.getText();
+		System.out.println("");
+		System.out.println("");
 		return element.getText();
 	}
 	

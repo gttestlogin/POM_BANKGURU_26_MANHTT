@@ -9,7 +9,7 @@ import pageUIs.NewCustomerPageUI;
 public class NewCustomerPageObject extends AbstractPage{
 	WebDriver driver;
 
-	//Ham khoi tao: Map driver
+	//.. Ham khoi tao: Map driver
 	public NewCustomerPageObject (WebDriver mappingDriver) {
 		driver = mappingDriver;
 		System.out.println("Driver at NewCustomerPage layer = " + driver.toString());

@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 import commons.AbstractPage;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
+import pageObjects.NewCustomerPageObject;
 import pageObjects.RegisterPageObject;
 
 public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage {
@@ -29,6 +30,7 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
 	HomePageObject homePage;
+	NewCustomerPageObject newCustomer;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -51,7 +53,8 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 		loginPage = new LoginPageObject(driver);
 		registerPage = new RegisterPageObject(driver);
 		homePage = new HomePageObject(driver);
-		
+		newCustomer = new NewCustomerPageObject(driver);
+
 		//selenium api: xu li triet de theo PO trong bai Multi-browsers
 		System.out.println("PRE-CONDITION-STEP: 1. Open BankGuru Application");
 		driver.get("https://demo.guru99.com/v4/");
@@ -115,46 +118,46 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 	@Test
 	public void TC_03_CreateNewCustomer() {
 		System.out.println("NEW_CUSTOMER - STEP: 1. Open New Customer page");
-		registerPage.openLoginPageUrl(loginPageUrl);
+		homePage.clickToNewCustomerPage();
 		
 		System.out.println("NEW_CUSTOMER - STEP: 2. Verify New Customer page displayed");
-		loginPage.inputToPasswordTextbox(password);
+		Assert.assertTrue(newCustomer.isNewCustomerPageDisplayed());
 
 		System.out.println("NEW_CUSTOMER - STEP: 3. Input to Customer Name textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToCustomerName(password);
 
 		System.out.println("NEW_CUSTOMER - STEP: 4. Click to Gender with 'male' value");
-		loginPage.clickToLoginButton();
+		newCustomer.clickToGenderMale();
 		
 		System.out.println("NEW_CUSTOMER - STEP: 5. Input to Date of Birth textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToDateOfBirthTextbox(password);
 
 		System.out.println("NEW_CUSTOMER - STEP: 6. Input to Address textarea");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToAddressTextArea(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 7. Input to City textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToCityTextbox(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 8. Input to State textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToStateTextbox(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 9. Input to PIN textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToPINTextbox(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 10. Input to Phone textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToPhoneTextbox(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 11. Input to Email textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToEmailTextbox(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 12. Input to Password textbox");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToPasswordTextbox(password);
 		
 		System.out.println("NEW_CUSTOMER - STEP: 13. Click to Submit button");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.clickToSubmitButton();
 		
 		System.out.println("NEW_CUSTOMER - STEP: 14. ");
-		loginPage.inputToPasswordTextbox(password);
+		newCustomer.inputToPasswordTextbox(password);
 		
 	}
 	

@@ -32,6 +32,7 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 	HomePageObject homePage;
 	NewCustomerPageObject newCustomer;
 	
+	// 
 	@BeforeClass
 	public void beforeClass() {
 		

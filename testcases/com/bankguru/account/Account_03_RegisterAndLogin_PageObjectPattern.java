@@ -33,7 +33,7 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 	long longTimeout = 30;
 	
 	String projectPath, email, username, password, loginPageUrl;
-	String customerNameValue, dateOfBirthValue, addressValue, cityValue;
+	String customerNameValue, dateOfBirthValue, addressValue, cityValue, genderMaleValue;
 	String stateValue, pinValue, phoneValue, emailValue, passwordValue;
 	
 	
@@ -61,6 +61,7 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 		homePage = new HomePageObject(driver);
 		newCustomer = new NewCustomerPageObject(driver);
 
+		genderMaleValue ="male";
 		customerNameValue = "manhkaka";
 		dateOfBirthValue = "1990-12-15";
 		addressValue = "Z06 Road 13";
@@ -96,12 +97,15 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 		System.out.println("REGISTER - STEP: 2. Input to Email ID textbox");
 		registerPage.inputToEmailTextbox(email);
 		
+		//registerPage.sendTabToEmailTextbox();
+		
 		System.out.println("REGISTER - STEP: 3. Click to SUBMIT button");
 		registerPage.clickToSubmitButton();
 		
 		System.out.println("REGISTER - STEP: 4. Get Username/Password infor");
 		username = registerPage.getUsernameInformation();
 		password = registerPage.getPasswordInformation();
+		System.out.println("username" +username);
 	}
 
 	@Test
@@ -169,16 +173,20 @@ public class Account_03_RegisterAndLogin_PageObjectPattern extends AbstractPage 
 		newCustomer.clickToSubmitButton();
 		
 		System.out.println("NEW_CUSTOMER - STEP: 14. Verify 'Customer Registered Successfully!!!' message displayed");
-		newCustomer.isCustomerRegisteredSuccessMessageDisplayed();
+		Assert.assertTrue(newCustomer.isCustomerRegisteredSuccessMessageDisplayed());
+		//isCustomerRegisteredSuccessMessageDisplayed()
 		
 		System.out.println("NEW_CUSTOMER - STEP: 15. Verify all information show correct");
+//		Assert.assertEquals(newCustomer.getCustomerIDValueInTable(), username);
 		Assert.assertEquals(newCustomer.getCustomerNameValueInTable(), customerNameValue);
-		Assert.assertEquals(newCustomer.getGenderValueInTable(), customerNameValue);
-		Assert.assertEquals(newCustomer.getBirthdayValueInTable(), customerNameValue);
-		Assert.assertEquals(newCustomer.getAddressValueInTable(), customerNameValue);
-		Assert.assertEquals(newCustomer.getStateValueInTable(), customerNameValue);
-		Assert.assertEquals(newCustomer.getPhoneValueInTable(), customerNameValue);
-		Assert.assertEquals(newCustomer.getEmailValueInTable(), customerNameValue);
+		Assert.assertEquals(newCustomer.getGenderValueInTable(), genderMaleValue);
+		Assert.assertEquals(newCustomer.getBirthdayValueInTable(), dateOfBirthValue);
+		Assert.assertEquals(newCustomer.getAddressValueInTable(), addressValue);
+		Assert.assertEquals(newCustomer.getCityValueInTable(), cityValue);
+		Assert.assertEquals(newCustomer.getStateValueInTable(), stateValue);
+		Assert.assertEquals(newCustomer.getPINValueInTable(), pinValue);
+		Assert.assertEquals(newCustomer.getPhoneValueInTable(), phoneValue);
+		Assert.assertEquals(newCustomer.getEmailValueInTable(), emailValue);
 
 	}
 	

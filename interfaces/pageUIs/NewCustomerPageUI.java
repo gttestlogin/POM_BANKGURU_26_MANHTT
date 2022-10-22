@@ -1,7 +1,7 @@
 package pageUIs;
 
 public class NewCustomerPageUI {
-	public static final String NEW_CUSTOMER_PAGE_HEADING = "//input[@name='name']";
+	public static final String NEW_CUSTOMER_PAGE_HEADING = "//p[@class='heading3']";
 	public static final String CUSTOMER_NAME_TEXTBOX = "//input[@name='name']";
 	public static final String GENDER_MALE_RADIO = "//input[@value='m']";
 	public static final String DATE_OF_BIRTH_TEXTBOX = "//input[@name='dob']";
@@ -21,8 +21,10 @@ public class NewCustomerPageUI {
 	public static final String ADDRESS_VALUE_IN_TABLE = "//td[text()='Address']/following-sibling::td";
 	public static final String CITY_VALUE_IN_TABLE = "//td[text()='City']/following-sibling::td";
 	public static final String STATE_VALUE_IN_TABLE = "//td[text()='State']/following-sibling::td";
-	public static final String PHONE_VALUE_IN_TABLE = "//td[text()='Pin']/following-sibling::td";
-	public static final String PIN_VALUE_IN_TABLE = "//td[text()='Mobile No.']/following-sibling::td";
+	public static final String PIN_VALUE_IN_TABLE = "//td[text()='Pin']/following-sibling::td";
+	public static final String PHONE_VALUE_IN_TABLE = "//td[text()='Mobile No.']/following-sibling::td";
 	public static final String EMAIL_VALUE_IN_TABLE = "//td[text()='Email']/following-sibling::td";
+
+	public static final String DEPOSIT_LINK = "//a[text()='Deposit']";
 
 }

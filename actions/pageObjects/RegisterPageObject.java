@@ -1,8 +1,12 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import commons.AbstractPage;
+import commons.PageGeneratorManager;
 import pageUIs.RegisterPageUI;
 
 public class RegisterPageObject extends AbstractPage {
@@ -36,8 +40,21 @@ public class RegisterPageObject extends AbstractPage {
 		return getTextElement(driver, RegisterPageUI.PASSWORD_TEXT);
 	}
 
+	public void sendTabToEmailTextbox() {
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
+		sendKeyboardToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, Keys.TAB);
+	}
+	
+	/*
 	public void openLoginPageUrl(String loginPageUrl) {
 		openUrl(driver, loginPageUrl);
 	}
-
+	*/
+	
+	public LoginPageObject openLoginPageUrl(String loginPageUrl) {
+		openUrl(driver, loginPageUrl);
+		//return new LoginPageObject(driver);
+		return PageGeneratorManager.getLoginPage(driver);
+	}
+	
 }

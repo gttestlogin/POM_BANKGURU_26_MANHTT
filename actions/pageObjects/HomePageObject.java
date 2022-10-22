@@ -3,6 +3,7 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 
 import commons.AbstractPage;
+import commons.PageGeneratorManager;
 import pageUIs.HomePageUI;
 import pageUIs.LoginPageUI;
 
@@ -29,5 +30,11 @@ public class HomePageObject extends AbstractPage{
 		waitForElementVisible(driver, HomePageUI.NEW_CUSTOMER_LINK);
 		clickToElement(driver, HomePageUI.NEW_CUSTOMER_LINK);
 		
+	}
+
+	public NewCustomerPageObject openNewCustomerPage() {
+		waitForElementVisible(driver, HomePageUI.NEW_CUSTOMER_LINK);
+		clickToElement(driver, HomePageUI.NEW_CUSTOMER_LINK);
+		return PageGeneratorManager.getNewCustomerPage(driver);
 	}
 }

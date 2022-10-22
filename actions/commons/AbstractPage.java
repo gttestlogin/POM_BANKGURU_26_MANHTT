@@ -328,6 +328,18 @@ public class AbstractPage {
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
 	}
 	
+	//dung cho PageFactory
+	public void waitForElementVisible(WebDriver driver, WebElement element) {
+		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		waitExplicit.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	//dung cho PageFactory
+	public void clickToElement(WebDriver driver, WebElement element) {
+		element.click();
+	}
+	
 	public void waitForElementInvisible(WebDriver driver, String locator) {
 		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
 		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));

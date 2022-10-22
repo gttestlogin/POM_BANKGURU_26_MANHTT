@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import commons.AbstractPage;
+import commons.PageGeneratorManager;
 import pageUIs.LoginPageUI;
 
 public class LoginPageObject extends AbstractPage {
@@ -27,6 +28,7 @@ public class LoginPageObject extends AbstractPage {
 		return getCurrentPageUrl(driver);
 	}
 
+	/*
 	public void clickToHereLink() {
 		//way1: Page Object
 		waitForElementVisible(driver, LoginPageUI.HERE_LINK);
@@ -42,10 +44,18 @@ public class LoginPageObject extends AbstractPage {
 		WebElement element = driver.findElement(By.xpath("//input[@name='uid]"));
 		element.click();
 		//end of way2
-		*/
+		/
 		
 	}
-
+	*/
+	
+	public RegisterPageObject clickToHereLink() {
+		waitForElementVisible(driver, LoginPageUI.HERE_LINK);
+		clickToElement(driver, LoginPageUI.HERE_LINK);
+		//sau khi clickToHereLink thì sẽ chuyển qua RegisterPageObject
+		//return new RegisterPageObject(driver);
+		return PageGeneratorManager.getRegisterPage(driver);
+	}
 	public void inputToUserIDTextbox(String username) {
 		waitForElementVisible(driver, LoginPageUI.USER_ID_TEXTBOX);
 		sendkeyToElement(driver, LoginPageUI.USER_ID_TEXTBOX, username);
@@ -57,11 +67,20 @@ public class LoginPageObject extends AbstractPage {
 		
 	}
 
+	/*
 	public void clickToLoginButton() {
 		waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
 		
 	}
-
+	 */
+	
+	public HomePageObject clickToLoginButton() {
+		waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
+		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		//return new HomePageObject(driver);
+		return PageGeneratorManager.getHomePage(driver);
+	}
+	
 
 }

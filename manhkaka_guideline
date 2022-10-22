@@ -1,6 +1,8 @@
+I. Account_01_RegisterAndLogin_StepByStep
+-> không che dấu đối tượng
 
-//	[Online 10] - Topic 20 (POM 02 - Build Selenium Wrapper API/ Apply AbstractPage)
-
+II. [Online 10] - Topic 20 (POM 02 - Build Selenium Wrapper API/ Apply AbstractPage)
+-> không che dấu đối tượng
 Project Structure
 
 AbstractPage: Những hàm dùng chung cho tầng page Object
@@ -23,7 +25,7 @@ o Alt + (mũi tên lên xuống): Move 1 dòng/ khối lệnh lên hoặc xuốn
 
 Wrapper API: như sendKeys dùng rất nhiều lần
 
-//Use AbstractPage class
+III. Use AbstractPage class
 - cach 1: Import + Init AbstractPage class
 	+ Phai khai bao
 	+ Phai khoi tao
@@ -39,4 +41,54 @@ Wrapper API: như sendKeys dùng rất nhiều lần
 	
 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);//deprecated in selenium 4
 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+VI. [Online 10] - Topic 24 (POM 06 - PageFactorySelenium and PageGeneratorManager)
+1. pageFactory kieu thuong:
+- Account_04_RegisterAndLogin_Selenium_PageFactory
+- Kieu thuong (Page Object + Split Locator (interface/class rieng)): cac bai truoc
+2. Kieu page Factory (Page Object + Page Factory): Thay vi de toan bo Locators ben ngoai (1 class rieng), 
+	thi nhet het toan bo vao trong xxxPageFactory.java
+	- Khi so lượng TCs nhiều, sẽ khó quản lý
+	- Nếu thử tách UI (@FindBy) ra sẽ không khởi tạo được PageFactory.initElements(driver, this);
+	- Khó sử dụng Dynamic Locator (Xpath), de nhet bien tu ben ngoai vao
+-> ko khuyen khich dung PageFactory cua Selenium
+
+- FindBy/FindBys/FindAll can phan biet
+
+POM nguyên lý:
+1. Kế thừa 
+ex: LoginPageObject extends AbstractPage
+
+2. Đóng gói, Che dấu dữ liệu (wrapper)
+Account_01_RegisterAndLogin -> ko che dấu
+Account_02_RegisterAndLogin -> ko che dấu
+Đưa dữ liệu về tầng Page Object để che dấu
+
+- khi đóng gói thì ko được phép thấy hàm khởi tạo trên tầng TC
+	+ ex: Account_05_RegisterAndLogin_PageGenerator có chứa loginPage = new LoginPageObject(driver); thì cần đưa tới tầng Page Object
+- hàm nào có sự chuyển page => đưa việc khởi tạo vào hàm đó
+	+ ex:
+		loginPage.clickToHereLink();
+		//Sau khi click Here Link => Khoi tao Register Page
+		registerPage = new RegisterPageObject(driver);
+		=> thì sẽ chuyển hàm clickToHereLink() trong LoginPageObject để thêm return và chuyển void
+		
+		public void clickToHereLink() {
+		//way1: Page Object
+		waitForElementVisible(driver, LoginPageUI.HERE_LINK);
+		clickToElement(driver, LoginPageUI.HERE_LINK);
+		}
+		
+		public void clickToHereLink() {
+		//way1: Page Object
+		waitForElementVisible(driver, LoginPageUI.HERE_LINK);
+		clickToElement(driver, LoginPageUI.HERE_LINK);
+		}
+3. Tính đa hình
+Qua bài Dynamic Locators mới dùng
+
+Page Generator: Quản lý việc khởi tạo page, thay vì return new Login/Home/RegisterPageObject(driver) quá nhiều
+đưa hết việc khởi tạo vào Page Generator
+
+
 

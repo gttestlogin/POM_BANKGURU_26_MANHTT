@@ -27,4 +27,6 @@ public class NewCustomerPageUI {
 
 	public static final String DEPOSIT_LINK = "//a[text()='Deposit']";
 
+	public static final String MANAGER_LINK = "//a[text()='Manager']";
+
 }

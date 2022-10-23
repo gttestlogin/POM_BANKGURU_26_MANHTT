@@ -1,4 +1,10 @@
+/chromedriver.exe
 /com/
-/pageObjects/
 /commons/
+/drag_and_drop_helper.js
+/jquery_load_helper.js
+/pageFactory/
+/pageObjects/
 /pageUIs/
+/runBankGuruTestcases.xml
+/webdriver/

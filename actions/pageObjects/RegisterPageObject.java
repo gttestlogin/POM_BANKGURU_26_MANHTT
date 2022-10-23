@@ -16,7 +16,7 @@ public class RegisterPageObject extends AbstractPage {
 	//Ham khoi tao: Map driver
 	public RegisterPageObject (WebDriver mappingDriver) {
 		driver = mappingDriver;
-		System.out.println("Driver at RegisterPage layer = " + driver.toString());
+		System.out.println("Driver at Register Page layer = " + driver.toString());
 	}
 		
 	public void inputToEmailTextbox(String email) {
@@ -44,6 +44,7 @@ public class RegisterPageObject extends AbstractPage {
 		waitForElementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
 		sendKeyboardToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, Keys.TAB);
 	}
+
 	
 	/*
 	public void openLoginPageUrl(String loginPageUrl) {
@@ -51,10 +52,12 @@ public class RegisterPageObject extends AbstractPage {
 	}
 	*/
 	
+	
 	public LoginPageObject openLoginPageUrl(String loginPageUrl) {
 		openUrl(driver, loginPageUrl);
 		//return new LoginPageObject(driver);
 		return PageGeneratorManager.getLoginPage(driver);
 	}
+	
 	
 }

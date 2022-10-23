@@ -15,9 +15,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.AbstractPage;
+import commons.AbstractTest;
 import commons.PageGeneratorManager;
 import pageObjects.DepositPageObject;
 import pageObjects.HomePageObject;
@@ -26,44 +28,19 @@ import pageObjects.NewAccountPageObject;
 import pageObjects.NewCustomerPageObject;
 import pageObjects.RegisterPageObject;
 
-public class Account_05_RegisterAndLogin_PageGenerator extends AbstractPage {
-
-	WebDriver driver;
+public class Account_05_RegisterAndLogin_PageGenerator extends AbstractTest {
+	//chua xu li giau du lieu
+//	String pathProject = System.getProperty("user.dir");
 	
-	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
-	HomePageObject homePage;
-	NewCustomerPageObject newCustomerPage;
-	DepositPageObject depositPage;
-	NewAccountPageObject newAccount;
+	@Parameters("browser")
 	
-	long shortTimeout = 5;
-	long longTimeout = 30;
-	
-	String projectPath, username, password, loginPageUrl;
-	String customerNameValue, dateOfBirthValue, addressValue, cityValue, genderMaleValue;
-	String stateValue, pinValue, phoneValue, emailValue, passwordValue;
-	
-	
-	// 
 	@BeforeClass
-	public void beforeClass() {
+	public void beforeClass(String browserName) {
+//		System.out.println("pathProject: " +pathProject);
 		
-		//chua xu li giau du lieu
-		String pathProject = System.getProperty("user.dir");
-		
-		// Setting system properties of FirefoxDriver
-		System.setProperty("webdriver.gecko.driver", pathProject + "/browserDrivers/geckodriver.exe");
-		//MacOS
-		//System.setProperty("webdriver.gecko.driver", pathProject + "/browserDrivers/geckodriver");
-		driver = new FirefoxDriver();
-		
-		//Setting system properties of ChromeDriver
-		//System.setProperty("webdriver.chrome.driver", pathProject + "/browserDrivers/chromedriver.exe");
-		//MacOS
 		//System.setProperty("webdriver.chrome.driver", pathProject + "/browserDrivers/chromedriver");
 		//driver = new ChromeDriver();
-		//
+		driver = openMultiBrowser(browserName);
 		
 		System.out.println("Driver at Testcase layer = " + driver.toString());
 		
@@ -74,21 +51,18 @@ public class Account_05_RegisterAndLogin_PageGenerator extends AbstractPage {
 //		homePage = new HomePageObject(driver);
 //		newCustomerPage = new NewCustomerPageObject(driver);
 
-		genderMaleValue ="male";
-		customerNameValue = "manhkaka";
-		dateOfBirthValue = "1990-12-15";
-		addressValue = "Z06 Road 13";
-		cityValue = "Hanoi";
-		stateValue = "Hanoi";
-		pinValue = "123456";
-		phoneValue = "0898993290";
-		emailValue = "auto" + randomDataTest() + "@gmail.com";
-		passwordValue = "12341234";
+//		genderMaleValue ="male";
+//		customerNameValue = "manhkaka";
+//		dateOfBirthValue = "1990-12-15";
+//		addressValue = "Z06 Road 13";
+//		cityValue = "Hanoi";
+//		stateValue = "Hanoi";
+//		pinValue = "123456";
+//		phoneValue = "0898993290";
+//		emailValue = "auto" + randomDataTest() + "@gmail.com";
+//		passwordValue = "12341234";
 		
-		//selenium api: xu li triet de theo PO trong bai Multi-browsers
-		System.out.println("PRE-CONDITION-STEP: 1. Open BankGuru Application");
-		//chua xu li giau du lieu
-		driver.get("https://demo.guru99.com/v4/");
+		
 		
 		//sau khi mo ra Url => khoi tao Login Page
 		//loginPage = new LoginPageObject(driver);
@@ -123,7 +97,7 @@ public class Account_05_RegisterAndLogin_PageGenerator extends AbstractPage {
 		
 		
 		//Skip Ads
-		openUrl(driver, "https://demo.guru99.com/");
+		driver.get("https://demo.guru99.com/");
 		
 		System.out.println("REGISTER - STEP: 2. Input to Email ID textbox");
 		registerPage.inputToEmailTextbox(emailValue);
@@ -180,11 +154,11 @@ public class Account_05_RegisterAndLogin_PageGenerator extends AbstractPage {
 	
 	@Test
 	public void TC_03_OpenMultiplePage() {
-		newCustomerPage = homePage.openNewCustomerPage();
+		newCustomerPage = homePage.openNewCustomerPage(driver);
 		
-		depositPage = newCustomerPage.openDepositPage();
+		depositPage = newCustomerPage.openDepositPage(driver);
 		
-		newAccount = depositPage.openNewAccountPage();
+		newAccount = depositPage.openNewAccountPage(driver);
 		
 	}
 	
@@ -197,5 +171,21 @@ public class Account_05_RegisterAndLogin_PageGenerator extends AbstractPage {
 		Random random = new Random();
 		return random.nextInt(999999);
 	}
+	
+	WebDriver driver;
+	
+	LoginPageObject loginPage;
+	RegisterPageObject registerPage;
+	HomePageObject homePage;
+	NewCustomerPageObject newCustomerPage;
+	DepositPageObject depositPage;
+	NewAccountPageObject newAccount;
+	
+	long shortTimeout = 5;
+	long longTimeout = 30;
+	
+	String projectPath, username, password, loginPageUrl, emailValue;
+//	String customerNameValue, dateOfBirthValue, addressValue, cityValue, genderMaleValue;
+//	String stateValue, pinValue, phoneValue, emailValue, passwordValue;
 	
 }

@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite parallel="false" name="Suite">
-  <test name="Test">
+
+
+  <test name="Run on Firefox">
+  <parameter name="browser" value="firefox"></parameter>
+    <classes>
+      <class name="com.bankguru.account.Account_07_RegisterAndLogin_ActionChain_WebDriverCycle"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  <!--test name="Run on Chrome">
+  <parameter name="browser" value="chrome"></parameter>
     <classes>
       <class name="com.bankguru.account.Account_05_RegisterAndLogin_PageGenerator"/>
     </classes>
-  </test> <!-- Test -->
+  </test> <Test -->
+  
 </suite> <!-- Suite -->

@@ -32,9 +32,17 @@ public class HomePageObject extends AbstractPage{
 		
 	}
 
+	/*
 	public NewCustomerPageObject openNewCustomerPage() {
 		waitForElementVisible(driver, HomePageUI.NEW_CUSTOMER_LINK);
 		clickToElement(driver, HomePageUI.NEW_CUSTOMER_LINK);
 		return PageGeneratorManager.getNewCustomerPage(driver);
 	}
+
+	public DepositPageObject openDepositPage() {
+		waitForElementVisible(driver, HomePageUI.DEPOSIT_LINK);
+		clickToElement(driver, HomePageUI.DEPOSIT_LINK);
+		return PageGeneratorManager.getDepositPage(driver);		
+	}
+	*/
 }

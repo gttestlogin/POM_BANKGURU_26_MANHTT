@@ -91,4 +91,8 @@ Page Generator: Quản lý việc khởi tạo page, thay vì return new Login/H
 đưa hết việc khởi tạo vào Page Generator
 
 
+VII. //[Online 10] - Topic 26 (POM 08 - WebDriver Life Cycle/ Action Chain)
+//Cach cu: 14 pages x 13 (di toi 13 pages khac)
+//Do do can viet common functions tai AbstractPage vaf AbstractPageUI de open Page Object
+
 

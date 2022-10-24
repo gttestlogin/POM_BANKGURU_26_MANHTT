@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite parallel="false" name="Suite">
-  <test name="Test">
+
+  <test name="Run on FIREFOX">
+  	<parameter name="browser" value="firefox"></parameter>
     <classes>
-      <class name="com.bankguru.account.Account_05_RegisterAndLogin_PageGenerator"/>
+      <class name="com.bankguru.account.Account_07_RegisterAndLogin_ActionChain_WebDriverCycle"/>
     </classes>
   </test> <!-- Test -->
+  
+  <!--test name="Run on CHROME">
+  	<parameter name="browser" value="chrome"></parameter>
+    <classes>
+      <class name="com.bankguru.account.Account_06_RegisterAndLogin_MultiBrowser_Parallel"/>
+    </classes>
+  <test> <Test -->
+  
+  <!--test name="Run on CHROME HEADLESS">
+  	<parameter name="browser" value="chromeheadless"></parameter>
+    <classes>
+      <class name="com.bankguru.account.Account_06_RegisterAndLogin_MultiBrowser_Parallel"/>
+    </classes>
+  <test> <Test -->
+  
+  <!--test name="Run on Edge">
+  	<parameter name="browser" value="edge"></parameter>
+    <classes>
+      <class name="com.bankguru.account.Account_06_RegisterAndLogin_MultiBrowser_Parallel"/>
+    </classes>
+  <test> <Test -->
+  
+  <!--test name="Run on IE">
+  	<parameter name="browser" value="internetexplorer"></parameter>
+    <classes>
+      <class name="com.bankguru.account.Account_06_RegisterAndLogin_MultiBrowser_Parallel"/>
+    </classes>
+  <test> <Test -->
+  
 </suite> <!-- Suite -->

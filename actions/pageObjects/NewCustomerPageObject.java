@@ -13,7 +13,7 @@ public class NewCustomerPageObject extends AbstractPage{
 	//.. Ham khoi tao: Map driver
 	public NewCustomerPageObject (WebDriver mappingDriver) {
 		driver = mappingDriver;
-		System.out.println("Driver at NewCustomerPage layer = " + driver.toString());
+		System.out.println("Driver at New Customer Page layer = " + driver.toString());
 	}
 
 	public boolean isNewCustomerPageDisplayed() {
@@ -142,10 +142,18 @@ public class NewCustomerPageObject extends AbstractPage{
 		return getTextElement(driver, NewCustomerPageUI.EMAIL_VALUE_IN_TABLE);
 	}
 
+	/*
 	public DepositPageObject openDepositPage() {
 		waitForElementVisible(driver, NewCustomerPageUI.DEPOSIT_LINK);
 		clickToElement(driver, NewCustomerPageUI.DEPOSIT_LINK);
 		return PageGeneratorManager.getDepositPage(driver);
 	}
+
+	public HomePageObject openHomePage() {
+		waitForElementVisible(driver, NewCustomerPageUI.MANAGER_LINK);
+		clickToElement(driver, NewCustomerPageUI.MANAGER_LINK);
+		return PageGeneratorManager.getHomePage(driver);
+	}
+	*/
 	
 }

@@ -9,5 +9,6 @@ public class AbstractPageUI {
 	public static final String DEPOSIT_LINK = "//a[text()='Deposit']";
 	public static final String LOGOUT_LINK = "//a[text()='Log out']";
 
-
+	public static final String DYNAMIC_MENU_LINK = "//a[text()='%s']";
+	
 }

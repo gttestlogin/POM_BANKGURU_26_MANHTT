@@ -108,11 +108,25 @@ public class AbstractPage {
 		element.click();
 	}
 	
+	//Rest Parameter
+	public void clickToElement(WebDriver driver, String locator, String... values) {
+		locator = String.format(locator, (Object[]) values);
+		element = driver.findElement(By.xpath(locator));
+		element.click();
+	}
+	
 	public void sendkeyToElement(WebDriver driver, String locator, String value) {
 		element = driver.findElement(By.xpath(locator));
 		element.sendKeys(value);
 	}
 	
+	//Rest Parameter
+		public void sendkeyToElement(WebDriver driver, String locator, String sendKeyValue, String... values) {
+			locator = String.format(locator, (Object[]) values);
+			element = driver.findElement(By.xpath(locator));
+			element.sendKeys(sendKeyValue);
+		}
+		
 	public void selectItemInDropdown(WebDriver driver, String locator, String itemText) {
 		element = driver.findElement(By.xpath(locator));
 		select = new Select(element);
@@ -134,8 +148,8 @@ public class AbstractPage {
 		Thread.sleep(1000);
 
 		// Chờ cho tất cả các giá trị trong dropdown được load ra thành công
-		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 		waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
 
 		elements = driver.findElements(By.xpath(allItemXpath));
@@ -169,11 +183,17 @@ public class AbstractPage {
 	public String getTextElement(WebDriver driver, String locator) {
 		element = driver.findElement(By.xpath(locator));
 		String actualText = element.getText();
-		System.out.println("");
-		System.out.println("");
 		return element.getText();
 	}
-	
+
+	//Rest Parameter
+			public String getTextElement(WebDriver driver, String locator, String... values) {
+				locator = String.format(locator, (Object[]) values);
+				element = driver.findElement(By.xpath(locator));
+				String actualText = element.getText();
+				return element.getText();
+			}
+			
 	public int countElementsNumber(WebDriver driver, String locator) {
 		elements = driver.findElements(By.xpath(locator));
 		return elements.size();
@@ -198,6 +218,13 @@ public class AbstractPage {
 		return element.isDisplayed();
 	}
 	
+	//Rest Parameter
+	public boolean isControlDisplayed(WebDriver driver, String locator, String... values) {
+		locator = String.format(locator, (Object[]) values);
+		element = driver.findElement(By.xpath(locator));
+		return element.isDisplayed();
+	}
+		
 	public boolean isControlSelected(WebDriver driver, String locator) {
 		element = driver.findElement(By.xpath(locator));
 		return element.isSelected();
@@ -322,26 +349,36 @@ public class AbstractPage {
 	}
 	
 	public void waitForElementPresence(WebDriver driver, String locator) {
-		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 //		element = driver.findElement(By.xpath(locator));
 		byLocator = By.xpath(locator);
 		waitExplicit.until(ExpectedConditions.presenceOfElementLocated(byLocator));
 	}
 	
 	public void waitForElementVisible(WebDriver driver, String locator) {
-		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
+		byLocator = By.xpath(locator);
+		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+	}
+	
+	//Rest Parameter
+	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		locator = String.format(locator, (Object[]) values);
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 		byLocator = By.xpath(locator);
 		waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
 	}
 	
 	//dung cho PageFactory
 	public void waitForElementVisible(WebDriver driver, WebElement element) {
-		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 		waitExplicit.until(ExpectedConditions.visibilityOf(element));
 	}
+	
 	
 	//dung cho PageFactory
 	public void clickToElement(WebDriver driver, WebElement element) {
@@ -349,20 +386,30 @@ public class AbstractPage {
 	}
 	
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 		byLocator = By.xpath(locator);
 		waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
 	}
 	
 	public void waitForElementClickable(WebDriver driver, String locator) {
-		// waitExplicit = new WebDriverWait(driver, longTimeout);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
+		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 		byLocator = By.xpath(locator);
 		waitExplicit.until(ExpectedConditions.elementToBeClickable(byLocator));
 	}
 	
-	//common functions open page objects
+	public void sleepInSecond(WebDriver driver, long timeSecond) {
+		try {
+			Thread.sleep(Constants.LONG_TIMEOUT);
+		}
+		catch (InterruptedException e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	//Bai 08: common functions open page objects
 	public NewCustomerPageObject openNewCustomerPage(WebDriver driver) {
 		waitForElementVisible(driver, AbstractPageUI.NEW_CUSTOMER_LINK);
 		clickToElement(driver, AbstractPageUI.NEW_CUSTOMER_LINK);
@@ -391,18 +438,54 @@ public class AbstractPage {
 		return PageGeneratorManager.getLoginPage(driver);		
 	}
 	
-	public LoginPageObject navigateToLoginPage(WebDriver driver) {
-		driver.navigate().to("https://demo.guru99.com/");
-		return PageGeneratorManager.getLoginPage(driver);
+	//Bai 09: Tom gon hon cua bai 8
+	//So luong pages it <=15
+	public AbstractPage openMultiplePage(WebDriver driver, String pageName) {
+		waitForElementVisible(driver, AbstractPageUI.DYNAMIC_MENU_LINK, pageName);
+		clickToElement(driver, AbstractPageUI.DYNAMIC_MENU_LINK, pageName);
+		
+		/*Cach 1: If else, kha dài
+		if(pageName.equals("New Customer")) {
+			return PageGeneratorManager.getNewCustomerPage(driver);
+		}
+		else if(pageName.equals("New Account")) {
+			return PageGeneratorManager.getNewAccountPage(driver);
+		}
+		else if(pageName.equals("Manager")) {
+			return PageGeneratorManager.getHomePage(driver);
+		}
+		else if(pageName.equals("Deposit")) {
+			return PageGeneratorManager.getDepositPage(driver);
+		}
+		else {
+			System.out.println("Please input page Name, or we will return Home Page right now");
+			return PageGeneratorManager.getHomePage(driver);
+		}
+		
+		*/
+		
+		//Cách 2: Switch case, đỡ hơn nhưng vẫn dài *
+		switch (pageName) {
+		case "New Customer": 
+			return PageGeneratorManager.getNewCustomerPage(driver);
+		case "New Account": 
+			return PageGeneratorManager.getNewAccountPage(driver);
+		case "Manager": 
+			return PageGeneratorManager.getHomePage(driver);
+		case "Deposit": 
+			return PageGeneratorManager.getDepositPage(driver);
+		default:
+			return PageGeneratorManager.getHomePage(driver);
+		}
+		
 	}
 	
-	public void sleepInSecond(WebDriver driver, long timeSecond) {
-		try {
-			Thread.sleep(longTimeout);
-		}
-		catch (InterruptedException e){
-			e.printStackTrace();
-		}
+	//So luong pages nhieu 100 -1000
+	//ep kieu qa tang TCs
+	public void openMultiplePages(WebDriver driver, String pageName) {
+		waitForElementVisible(driver, AbstractPageUI.DYNAMIC_MENU_LINK, pageName);
+		clickToElement(driver, AbstractPageUI.DYNAMIC_MENU_LINK, pageName);
+		
 	}
 	
 	private WebElement element;
@@ -412,7 +495,5 @@ public class AbstractPage {
 	private WebDriverWait waitExplicit;
 	private Actions action;
 	By byLocator;
-	long shortTimeout = 5;
-	long longTimeout = 30;
 	
 }

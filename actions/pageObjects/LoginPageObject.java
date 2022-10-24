@@ -26,6 +26,7 @@ public class LoginPageObject extends AbstractPage {
 	
 	public String getLoginPageUrl() {
 		return getCurrentPageUrl(driver);
+
 	}
 
 	/*

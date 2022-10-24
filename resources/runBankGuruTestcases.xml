@@ -5,7 +5,7 @@
   <test name="Run on FIREFOX">
   	<parameter name="browser" value="firefox"></parameter>
     <classes>
-      <class name="com.bankguru.account.Account_07_RegisterAndLogin_ActionChain_WebDriverCycle"/>
+      <class name="com.bankguru.account.Account_08_RegisterAndLogin_DynamicLocator_RestParameter"/>
     </classes>
   </test> <!-- Test -->
   

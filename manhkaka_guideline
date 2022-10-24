@@ -94,5 +94,13 @@ Page Generator: Quản lý việc khởi tạo page, thay vì return new Login/H
 VII. //[Online 10] - Topic 26 (POM 08 - WebDriver Life Cycle/ Action Chain)
 //Cach cu: 14 pages x 13 (di toi 13 pages khac)
 //Do do can viet common functions tai AbstractPage vaf AbstractPageUI de open Page Object
+//Tối ưu level 1: chỉ cần viết 1 PageGeneratorManager
 
+VIII. //[Online 10] - Topic 27 (POM 09 - Dynamic Locator and Rest Parameters)
+//https://www.youtube.com/watch?v=epxoAXZ4QeA
+Static = chia sẻ data/state xuyên suốt hệ thống, nên dùng chung cho toàn bộ System
+//Tối ưu level 2: 15 hàm trong AbstractPage.java
+
+public void waitForElementVisible(WebDriver driver, WebElement element) -> ko dung duoc do tham so la WebElement, va dang dung String.format(locator, (Object[]) values);
+public void waitForElementVisible(WebDriver driver, String locator, String... values) { -> dung duoc
 

@@ -32,7 +32,7 @@ import pageObjects.NewAccountPageObject;
 import pageObjects.NewCustomerPageObject;
 import pageObjects.RegisterPageObject;
 
-public class Account_07_RegisterAndLogin_ActionChain_WebDriverCycle extends AbstractTest {	
+public class Account_08_RegisterAndLogin_DynamicLocator_RestParameter extends AbstractTest {	
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
@@ -102,52 +102,47 @@ public class Account_07_RegisterAndLogin_ActionChain_WebDriverCycle extends Abst
 	public void TC_03_OpenMultiplePage() {
 		System.out.println("Action Chain - Step 1: Home Page navigates to New Customer Page");
 		//homePage da ke thua AbstractPage nen co the su dung openNewCustomerPage
-		newCustomerPage = homePage.openNewCustomerPage(driver);
-//		newCustomerPage.refreshToPage(driver);
-		
+		//newCustomerPage = homePage.openNewCustomerPage(driver);
+		//Cách 1 - openMultiplePage (Cash to page) - Số lượng pages ít, return trong openMultiplePage
+		newCustomerPage = (NewCustomerPageObject) homePage.openMultiplePage(driver, "New Customer");
+				
 		System.out.println("Action Chain - Step 2: New Customer Page navigates to Deposit Page");
-		depositPage = newCustomerPage.openDepositPage(driver);
+		//depositPage = newCustomerPage.openDepositPage(driver);
+		//Cách 1 - openMultiplePage (Cash to page) - Số lượng pages ít, return trong openMultiplePage
+		depositPage = (DepositPageObject) newCustomerPage.openMultiplePage(driver, "Deposit");
 		
 		System.out.println("Action Chain - Step 3: Deposit Page navigates to New Account Page");
-		newAccountPage = depositPage.openNewAccountPage(driver);
-		
-//		newAccountPage.refreshToPage(driver);
-		loginPage = newAccountPage.openLogoutLink(driver);
-//		newAccountPage.openLogoutLink(driver);
-//		loginPage = newAccountPage.navigateToLoginPage(driver);
-		
-		//driver.get("https://demo.guru99.com/v4/manager/Logout.php");
-		//loginPage = driver.getCurrentUrl(); 
-
-		loginPage.inputToUserIDTextbox(username);
-		loginPage.inputToPasswordTextbox(password);
-		homePage = loginPage.clickToLoginButton();
-		
-		newAccountPage = homePage.openNewAccountPage(driver);
+		//newAccountPage = depositPage.openNewAccountPage(driver);
+		//Cách 2 - goi ham map driver ỏ tầng TC - Số lượng pages nhiều, xử lí chuyển thẳng ở tầng TC
+		depositPage.openMultiplePages(driver, "New Account");
+		//goi ham map driver
+		newAccountPage = PageGeneratorManager.getNewAccountPage(driver);
 		
 		System.out.println("Action Chain - Step 4: New Account Page navigates to Home Page");
-		homePage = newAccountPage.openHomePage(driver);
+		//homePage = newAccountPage.openHomePage(driver);
+		newAccountPage.openMultiplePage(driver, "New Account");
+		homePage = PageGeneratorManager.getHomePage(driver);
+
 		
 		System.out.println("Action Chain - Step 5: Home Page navigates to Deposit Page");
-		depositPage = homePage.openDepositPage(driver);
-		
-		loginPage = newAccountPage.openLogoutLink(driver);
-		loginPage.inputToUserIDTextbox(username);
-		loginPage.inputToPasswordTextbox(password);
-		homePage = loginPage.clickToLoginButton();
-		
-		newCustomerPage = homePage.openNewCustomerPage(driver);
+		//depositPage = homePage.openDepositPage(driver);
+		homePage.openMultiplePage(driver, "Deposit");
+		depositPage = PageGeneratorManager.getDepositPage(driver);
 		
 		System.out.println("Action Chain - Step 6: Deposit Page navigates to New Customer Page");
-		newCustomerPage = depositPage.openNewCustomerPage(driver);
+		//newCustomerPage = depositPage.openNewCustomerPage(driver);
+		depositPage.openMultiplePage(driver, "New Customer");
+		newCustomerPage = PageGeneratorManager.getNewCustomerPage(driver);
 
 		System.out.println("Action Chain - Step 7: New Customer Page navigates to Home Page");
-		homePage = newCustomerPage.openHomePage(driver);
+		//homePage = newCustomerPage.openHomePage(driver);
+		newCustomerPage.openMultiplePage(driver, "Manager");
+		homePage = PageGeneratorManager.getHomePage(driver);
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		//driver.quit();
+		driver.quit();
 	}
 
 	public int randomDataTest() {
@@ -163,9 +158,6 @@ public class Account_07_RegisterAndLogin_ActionChain_WebDriverCycle extends Abst
 	NewCustomerPageObject newCustomerPage;
 	DepositPageObject depositPage;
 	NewAccountPageObject newAccountPage;
-
-	long shortTimeout = 5;
-	long longTimeout = 30;
 	
 	String projectPath, username, password, loginPageUrl, emailValue;
 //	String customerNameValue, dateOfBirthValue, addressValue, cityValue, genderMaleValue;

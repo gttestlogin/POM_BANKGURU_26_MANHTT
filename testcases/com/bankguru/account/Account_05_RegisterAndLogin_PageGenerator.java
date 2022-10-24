@@ -180,11 +180,11 @@ public class Account_05_RegisterAndLogin_PageGenerator extends AbstractPage {
 	
 	@Test
 	public void TC_03_OpenMultiplePage() {
-		newCustomerPage = homePage.openNewCustomerPage();
+		newCustomerPage = homePage.openNewCustomerPage(driver);
 		
-		depositPage = newCustomerPage.openDepositPage();
+		depositPage = newCustomerPage.openDepositPage(driver);
 		
-		newAccount = depositPage.openNewAccountPage();
+		newAccount = depositPage.openNewAccountPage(driver);
 		
 	}
 	

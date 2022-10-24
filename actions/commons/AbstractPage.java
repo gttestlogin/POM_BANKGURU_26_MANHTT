@@ -15,6 +15,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.DepositPageObject;
+import pageObjects.HomePageObject;
+import pageObjects.LoginPageObject;
+import pageObjects.NewAccountPageObject;
+import pageObjects.NewCustomerPageObject;
+import pageUIs.AbstractPageUI;
+import pageUIs.DepositPageUI;
+
 public class AbstractPage {
 	
 	/*
@@ -352,6 +360,49 @@ public class AbstractPage {
 		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(longTimeout));
 		byLocator = By.xpath(locator);
 		waitExplicit.until(ExpectedConditions.elementToBeClickable(byLocator));
+	}
+	
+	//common functions open page objects
+	public NewCustomerPageObject openNewCustomerPage(WebDriver driver) {
+		waitForElementVisible(driver, AbstractPageUI.NEW_CUSTOMER_LINK);
+		clickToElement(driver, AbstractPageUI.NEW_CUSTOMER_LINK);
+		return PageGeneratorManager.getNewCustomerPage(driver);		
+	}
+	public NewAccountPageObject openNewAccountPage(WebDriver driver) {
+		waitForElementVisible(driver, AbstractPageUI.NEW_ACCOUNT_LINK);
+		clickToElement(driver, AbstractPageUI.NEW_ACCOUNT_LINK);
+		return PageGeneratorManager.getNewAccountPage(driver);		
+	}
+	public HomePageObject openHomePage(WebDriver driver) {
+		waitForElementVisible(driver, AbstractPageUI.MANAGER_LINK);
+		clickToElement(driver, AbstractPageUI.MANAGER_LINK);
+		return PageGeneratorManager.getHomePage(driver);		
+	}
+	public DepositPageObject openDepositPage(WebDriver driver) {
+		waitForElementVisible(driver, AbstractPageUI.DEPOSIT_LINK);
+		clickToElement(driver, AbstractPageUI.DEPOSIT_LINK);
+		return PageGeneratorManager.getDepositPage(driver);		
+	}
+	public LoginPageObject openLogoutLink(WebDriver driver) {
+		waitForElementVisible(driver, AbstractPageUI.LOGOUT_LINK);
+		clickToElement(driver, AbstractPageUI.LOGOUT_LINK);
+		acceptAlert(driver);
+		sleepInSecond(driver, 3);
+		return PageGeneratorManager.getLoginPage(driver);		
+	}
+	
+	public LoginPageObject navigateToLoginPage(WebDriver driver) {
+		driver.navigate().to("https://demo.guru99.com/");
+		return PageGeneratorManager.getLoginPage(driver);
+	}
+	
+	public void sleepInSecond(WebDriver driver, long timeSecond) {
+		try {
+			Thread.sleep(longTimeout);
+		}
+		catch (InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 	
 	private WebElement element;

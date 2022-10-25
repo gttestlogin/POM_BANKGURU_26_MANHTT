@@ -58,8 +58,8 @@ public class LoginPageObject extends AbstractPage {
 		return PageGeneratorManager.getRegisterPage(driver);
 	}
 	public void inputToUserIDTextbox(String username) {
-		waitForElementVisible(driver, LoginPageUI.USER_ID_TEXTBOX);
-		sendkeyToElement(driver, LoginPageUI.USER_ID_TEXTBOX, username);
+		waitForElementVisible(driver, LoginPageUI.USERID_TEXTBOX);
+		sendkeyToElement(driver, LoginPageUI.USERID_TEXTBOX, username);
 	}
 
 	public void inputToPasswordTextbox(String password) {
@@ -83,5 +83,37 @@ public class LoginPageObject extends AbstractPage {
 		return PageGeneratorManager.getHomePage(driver);
 	}
 
+	//Account_09_RegisterAndLogin_ElementUndisplayed
+	public boolean isLoginPageDisplayed() {
+		//khi Login Page displayed thi tuc la UserID Textbox displayed
+		waitForElementVisible(driver, LoginPageUI.USERID_TEXTBOX);
+		return isControlDisplayed(driver, LoginPageUI.USERID_TEXTBOX);
+	}
 
+	public boolean isRegisterPageUndisplayed() {
+		//khi Login Page displayed thi tuc la UserID Textbox displayed
+		waitForElementInvisible(driver, LoginPageUI.EMAIL_TEXTBOX_AT_REGISTER_PAGE);
+		return isControlUndisplayed(driver, LoginPageUI.EMAIL_TEXTBOX_AT_REGISTER_PAGE);
+	}
+
+	public boolean isHomePageUndisplayed() {
+		//khi Login Page displayed thi tuc la UserID Textbox displayed
+		waitForElementInvisible(driver, LoginPageUI.WELCOME_MESSAGE_AT_HOME_PAGE);
+		return isControlUndisplayed(driver, LoginPageUI.WELCOME_MESSAGE_AT_HOME_PAGE);
+	}
+
+	public boolean isDeleteCustomerFormLinkDisplayed() {
+		waitForElementVisible(driver, LoginPageUI.DELETE_CUSTOMER_FORM_AT_LOGIN_PAGE);
+		return isControlDisplayed(driver, LoginPageUI.DELETE_CUSTOMER_FORM_AT_LOGIN_PAGE);
+	}
+
+	public boolean isDeleteCustomerFormLinkUndisplayed() {
+		waitForElementInvisible(driver, LoginPageUI.DELETE_CUSTOMER_FORM_AT_LOGIN_PAGE);
+		return isControlUndisplayed(driver, LoginPageUI.DELETE_CUSTOMER_FORM_AT_LOGIN_PAGE);
+	}
+	
+	public void clickToSeleniumDropdownToggle() {
+		waitForElementVisible(driver, LoginPageUI.SELENIUM_DROPDOWN_TOGGLE_AT_LOGIN_PAGE);
+		clickToElement(driver, LoginPageUI.SELENIUM_DROPDOWN_TOGGLE_AT_LOGIN_PAGE);
+	}
 }

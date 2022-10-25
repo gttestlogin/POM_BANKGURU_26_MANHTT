@@ -33,7 +33,7 @@ import pageObjects.NewAccountPageObject;
 import pageObjects.NewCustomerPageObject;
 import pageObjects.RegisterPageObject;
 
-public class Account_08_RegisterAndLogin_DynamicLocator_RestParameter extends AbstractTest {	
+public class Account_09_RegisterAndLogin_ElementUndisplayed extends AbstractTest {	
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
@@ -50,31 +50,27 @@ public class Account_08_RegisterAndLogin_DynamicLocator_RestParameter extends Ab
 	
 	@Test
 	public void TC_01_RegisterToSystem() {		
-		loginPageUrl = loginPage.getLoginPageUrl();
+		System.out.println("REGISTER - STEP: 1.1 Verify Home Page is displayed");
+		Assert.assertTrue(loginPage.isLoginPageDisplayed());
 		
-		//che dau ham khoi tao
-		System.out.println("REGISTER - STEP: 1. Click to 'Here' link");
-		//sau khi clickToHereLink thì sẽ chuyển qua RegisterPageObject
-		//Login Page -> click to Here link -> Register Page 
-		registerPage = loginPage.clickToHereLink();
+		//co trong DOM nhung khong hien tren UI
+		System.out.println("REGISTER - STEP: 1.2.1 Verify Delete Customer Form is not displayed");
+		Assert.assertTrue(loginPage.isDeleteCustomerFormLinkUndisplayed());
+
+		System.out.println("REGISTER - STEP: 1.2.2 Click to Selenium Dropdown Toggle");
+		loginPage.clickToSeleniumDropdownToggle();
+
+		System.out.println("REGISTER - STEP: 1.2.3 Verify Delete Customer Form is displayed (after click to Selenium)");
+		Assert.assertTrue(loginPage.isDeleteCustomerFormLinkDisplayed());
 		
-		
-		//Skip Ads
-		driver.get(Constants.TEST_URL);
-		
-		System.out.println("REGISTER - STEP: 2. Input to Email ID textbox");
-		registerPage.inputToEmailTextbox(emailValue);
-				
-		System.out.println("REGISTER - STEP: 3. Click to SUBMIT button");
-		registerPage.clickToSubmitButton();
-		
-		System.out.println("REGISTER - STEP: 4. Get Username/Password infor");
-		username = registerPage.getUsernameInformation();
-		password = registerPage.getPasswordInformation();
-		System.out.println("username" +username);
+		System.out.println("REGISTER - STEP: 1.3 Verify Home Page is not displayed");
+		Assert.assertTrue(loginPage.isHomePageUndisplayed());
+
+		System.out.println("REGISTER - STEP: 1.4 Verify Register Page is not displayed");
+		Assert.assertTrue(loginPage.isRegisterPageUndisplayed());	
 	}
 
-	@Test
+	@Test (enabled = false)
 	public void TC_02_LoginToSystem() {
 		
 		//che dau ham khoi tao
@@ -99,7 +95,7 @@ public class Account_08_RegisterAndLogin_DynamicLocator_RestParameter extends Ab
 
 	}
 	
-	@Test
+	@Test (enabled = false)
 	public void TC_03_OpenMultiplePage() {
 		System.out.println("Action Chain - Step 1: Home Page navigates to New Customer Page");
 		//homePage da ke thua AbstractPage nen co the su dung openNewCustomerPage

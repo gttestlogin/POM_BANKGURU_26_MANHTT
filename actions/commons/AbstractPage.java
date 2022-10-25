@@ -1,6 +1,7 @@
 package commons;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -218,6 +219,28 @@ public class AbstractPage {
 		return element.isDisplayed();
 	}
 	
+	public boolean isControlUndisplayed(WebDriver driver, String locator) {
+		System.out.println("Start time = " + new Date().toString());
+		overrideGlobalTimeout(driver, Constants.SHORT_TIMEOUT);
+		List<WebElement> elements = driver.findElements(By.xpath(locator));
+		
+		if(elements.size() == 0) {
+			System.out.println("Element not in DOM");
+			System.out.println("End time = " + new Date().toString());
+			return true;
+		}
+		else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			System.out.println("Element in DOM but not visible/displayed");
+			System.out.println("End time = " + new Date().toString());
+			return true;
+		}
+		else {
+			System.out.println("Element in DOM and visible");
+			overrideGlobalTimeout(driver, Constants.LONG_TIMEOUT);
+			return false;
+		}
+	}
+	
 	//Rest Parameter
 	public boolean isControlDisplayed(WebDriver driver, String locator, String... values) {
 		locator = String.format(locator, (Object[]) values);
@@ -387,9 +410,14 @@ public class AbstractPage {
 	
 	public void waitForElementInvisible(WebDriver driver, String locator) {
 		// waitExplicit = new WebDriverWait(driver, Constants.LONG_TIMEOUT);	//deprecated in selenium 4
-		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
 		byLocator = By.xpath(locator);
+		waitExplicit = new WebDriverWait(driver,Duration.ofSeconds(Constants.LONG_TIMEOUT));
+		overrideGlobalTimeout(driver, Constants.SHORT_TIMEOUT);
+		System.out.println("Start time for wait invisible: " + new Date().toString());
 		waitExplicit.until(ExpectedConditions.invisibilityOfElementLocated(byLocator));
+		System.out.println("End time for wait invisible: " + new Date().toString());
+		overrideGlobalTimeout(driver, Constants.LONG_TIMEOUT);
+
 	}
 	
 	public void waitForElementClickable(WebDriver driver, String locator) {
@@ -486,6 +514,10 @@ public class AbstractPage {
 		waitForElementVisible(driver, AbstractPageUI.DYNAMIC_MENU_LINK, pageName);
 		clickToElement(driver, AbstractPageUI.DYNAMIC_MENU_LINK, pageName);
 		
+	}
+	
+	public void overrideGlobalTimeout(WebDriver driver, long timeOut){
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut));
 	}
 	
 	private WebElement element;

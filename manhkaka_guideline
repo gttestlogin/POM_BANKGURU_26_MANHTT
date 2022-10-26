@@ -104,3 +104,8 @@ Static = chia sẻ data/state xuyên suốt hệ thống, nên dùng chung cho t
 public void waitForElementVisible(WebDriver driver, WebElement element) -> ko dung duoc do tham so la WebElement, va dang dung String.format(locator, (Object[]) values);
 public void waitForElementVisible(WebDriver driver, String locator, String... values) { -> dung duoc
 
+VI. [Online 10] - Topic 29 (POM 11 - Assert/ Verify/ Log/ Report HTML)
+Có 3 mode logs
+- Log ra console trong quá trình chạy để theo dõi
+- Log vào file để tracking
+- Log vào Report

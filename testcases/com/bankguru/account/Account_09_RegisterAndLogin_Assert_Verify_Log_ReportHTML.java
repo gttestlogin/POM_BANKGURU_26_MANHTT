@@ -33,7 +33,7 @@ import pageObjects.NewAccountPageObject;
 import pageObjects.NewCustomerPageObject;
 import pageObjects.RegisterPageObject;
 
-public class Account_09_RegisterAndLogin_ElementUndisplayed extends AbstractTest {	
+public class Account_09_RegisterAndLogin_Assert_Verify_Log_ReportHTML extends AbstractTest {	
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {

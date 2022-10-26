@@ -2,10 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite parallel="false" name="Suite">
 
+	<listeners>
+		<listener class-name="commons.MethodListener"/>
+		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+	</listeners>
+	
   <test name="Run on FIREFOX">
   	<parameter name="browser" value="firefox"></parameter>
     <classes>
-      <class name="com.bankguru.account.Account_09_RegisterAndLogin_ElementUndisplayed"/>
+      <class name="com.bankguru.account.Account_10_RegisterAndLogin_ElementUndisplayed"/>
     </classes>
   </test> <!-- Test -->
   

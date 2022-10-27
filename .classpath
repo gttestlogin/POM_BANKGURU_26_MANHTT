@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="lib/guice-5.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/reportng-1.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/velocity-dep-1.5-beta2.jar"/>
+	<classpathentry kind="lib" path="lib/webdrivermanager-5.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

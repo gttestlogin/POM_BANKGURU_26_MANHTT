@@ -1,3 +1,4 @@
+//Dung chung cho tang Page
 package commons;
 
 import java.time.Duration;
